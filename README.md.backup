@@ -1,0 +1,222 @@
+# Argus - Claim Verification Assistant
+
+A Chrome extension that provides on-device claim extraction and verification using multimodal analysis and local evidence retrieval. Argus helps users verify claims by analyzing selected text, extracting canonical claims, and finding supporting/contradicting evidence from indexed web content.
+
+## Features
+
+### Core Functionality
+- **On-device claim extraction**: Extract and canonicalize claims from selected text using Chrome's built-in Prompt API
+- **Multimodal context capture**: Analyze text selections along with nearby images and page metadata
+- **Local evidence store**: Private, client-side vector database for storing and retrieving evidence passages
+- **Provenance visualization**: Highlight exact locations of evidence on source pages with DOM selectors
+- **Rebuttal generation**: Create evidence-based rebuttals and exportable reports using Writer API
+
+### Privacy & Security
+- **Local-first design**: All processing happens on-device by default
+- **No data collection**: Claims and evidence never leave your browser
+- **Optional cloud fallback**: Explicit opt-in for deeper web searches
+- **Encrypted storage**: Optional password protection for local evidence database
+
+### Performance
+- **Sub-second verification**: Target latency <1s for local evidence retrieval
+- **Efficient storage**: Compressed embeddings and chunked document storage
+- **Streaming responses**: Real-time progress updates during analysis
+
+## Installation
+
+### Prerequisites
+- Chrome 121+ (for Prompt API support)
+- Enable experimental web platform features:
+  - Navigate to `chrome://flags/#enable-experimental-web-platform-features`
+  - Set to "Enabled"
+- For full functionality, enable additional flags:
+  - `chrome://flags/#prompt-api-for-gemini-nano`
+  - `chrome://flags/#writer-api-for-gemini-nano`
+  - `chrome://flags/#rewriter-api-for-gemini-nano`
+
+### Installation Steps
+1. Clone or download this repository
+2. Open Chrome and navigate to `chrome://extensions/`
+3. Enable "Developer mode" in the top right
+4. Click "Load unpacked" and select the extension directory
+5. The Argus extension should now appear in your extensions list
+
+## Usage
+
+### Basic Verification
+1. Navigate to any webpage containing claims you want to verify
+2. Select text containing the claim
+3. Click the Argus extension icon in your browser toolbar
+4. Click "Verify Claim" to start analysis
+5. Review the canonicalized claim, confidence score, and evidence
+
+### Evidence Exploration
+- Click on evidence cards to highlight the source location on the original page
+- View supporting vs. contradicting evidence separately
+- Generate explanations and rebuttals based on found evidence
+
+### Export Options
+- Export verification results as Markdown or PDF
+- Generate rebuttals and evidence summaries
+- Copy formatted content to clipboard
+
+### Settings
+- Access settings through the extension popup or options page
+- Toggle local-only mode vs. cloud fallback
+- Enable/disable auto-indexing of visited pages
+- Configure encryption for local evidence storage
+
+## Demo Pages
+
+The extension includes offline demo pages for testing:
+- `demo-pages/claim1.html`: Climate change and agriculture claims
+- `demo-pages/claim2.html`: Vitamin D and immune health claims
+- `demo-pages/claim3.html`: Remote work economic impact claims
+
+To test with demo pages:
+1. Open the demo pages in new tabs
+2. Select claims on these pages
+3. Use the extension to verify them
+
+## APIs Used
+
+### Chrome Built-in APIs
+- **Prompt API**: For multimodal claim extraction and analysis
+- **Writer API**: For generating rebuttals and reports
+- **Rewriter API**: For polishing generated content
+- **Language Detector API**: For content analysis
+
+### Web Platform APIs
+- **IndexedDB**: Local evidence storage
+- **Web Crypto API**: Optional encryption
+- **Selection API**: Text selection capture
+- **DOM API**: Element highlighting and provenance
+
+## Architecture
+
+### Extension Components
+- **manifest.json**: Extension configuration and permissions
+- **background.js**: Core processing logic and API calls
+- **content_script.js**: Page interaction and selection capture
+- **popup/**: User interface components
+- **options/**: Settings management
+
+### Data Flow
+1. User selects text on webpage
+2. Content script captures selection + context + images
+3. Background script extracts canonical claim using Prompt API
+4. Vector search finds relevant evidence from local store
+5. Results displayed with provenance links and export options
+
+### Storage Schema
+- **Embeddings Store**: Claim and passage embeddings with metadata
+- **Evidence Store**: Indexed evidence passages with source info
+- **Claims Store**: Processed claim history with timestamps
+
+## Evaluation
+
+### Test Claims
+The extension includes a labeled evaluation set in `evaluation/claims.json` with ground truth for 7 test claims covering various topics.
+
+### Running Evaluation
+1. Open Chrome DevTools on a demo page
+2. Run the evaluation script:
+   ```javascript
+   // Load the evaluation script
+   const script = document.createElement('script');
+   script.src = chrome.runtime.getURL('evaluation/metrics.js');
+   document.head.appendChild(script);
+
+   // After script loads, run evaluation
+   setTimeout(() => {
+     ArgusEvaluator.run();
+   }, 1000);
+   ```
+
+### Metrics
+- **Extraction Accuracy**: % of claims successfully canonicalized
+- **Evidence Retrieval**: Precision/recall for finding relevant passages
+- **Latency**: Average verification time
+- **User Experience**: Interface responsiveness and usability
+
+## Development
+
+### Project Structure
+```
+argus-extension/
+├── manifest.json
+├── background.js
+├── content_script.js
+├── popup.html/css/js
+├── options.html/js
+├── demo-pages/
+├── evaluation/
+├── icons/
+└── README.md
+```
+
+### Building & Testing
+1. Make changes to source files
+2. Reload the extension in `chrome://extensions/`
+3. Test with demo pages and evaluation script
+4. Verify functionality in different scenarios
+
+### Contributing
+1. Fork the repository
+2. Create a feature branch
+3. Make changes and test thoroughly
+4. Submit a pull request with detailed description
+
+## Privacy Statement
+
+Argus is designed with privacy as the highest priority:
+
+- **No data collection**: All processing happens locally on your device
+- **No tracking**: No analytics, telemetry, or user behavior tracking
+- **No cloud storage**: Evidence and claims stay in your browser's local storage
+- **Opt-in cloud**: Cloud fallback requires explicit user permission
+- **Minimal permissions**: Only requests necessary browser permissions
+
+### Data Storage
+- Local evidence indexed from pages you visit (if auto-indexing enabled)
+- Processed claims and verification results
+- User settings and preferences
+- All data can be encrypted with user-provided passphrase
+
+## Troubleshooting
+
+### Common Issues
+
+**Extension not loading**
+- Ensure Chrome version 121+
+- Check that experimental flags are enabled
+- Try reloading the extension
+
+**Prompt API not working**
+- Verify flags are enabled: `chrome://flags/#enable-experimental-web-platform-features`
+- Restart Chrome after enabling flags
+- Check console for API availability errors
+
+**Slow performance**
+- Clear local evidence store if too large
+- Disable auto-indexing if not needed
+- Check browser resource usage
+
+**Highlighting not working**
+- Ensure page allows content scripts
+- Check for iframe restrictions
+- Try refreshing the page
+
+### Debug Mode
+Enable verbose logging in DevTools:
+```javascript
+localStorage.setItem('argusDebug', 'true');
+```
+
+## License
+
+MIT License - see LICENSE file for details.
+
+## Acknowledgments
+
+Built using Chrome's experimental Web AI APIs and modern web platform features. Special thanks to the Chrome team for providing powerful on-device AI capabilities.

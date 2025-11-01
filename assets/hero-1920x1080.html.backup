@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Argus Hero Screenshot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            font-family: 'Inter', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Chrome window mock */
+        .chrome-window {
+            position: absolute;
+            top: 60px;
+            left: 120px;
+            width: 1680px;
+            height: 900px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        .chrome-header {
+            height: 40px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+        }
+
+        .chrome-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .chrome-control {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ff5f57;
+        }
+
+        .chrome-control:nth-child(2) {
+            background: #ffbd2e;
+        }
+
+        .chrome-control:nth-child(3) {
+            background: #28ca42;
+        }
+
+        .chrome-url {
+            margin-left: 16px;
+            flex: 1;
+            background: white;
+            border-radius: 20px;
+            padding: 6px 12px;
+            font-size: 13px;
+            color: #666;
+            border: 1px solid #ddd;
+        }
+
+        /* Article content */
+        .article-content {
+            position: absolute;
+            left: 0;
+            top: 40px;
+            width: 60%;
+            height: calc(100% - 40px);
+            padding: 40px;
+            overflow: hidden;
+        }
+
+        .article-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .article-text {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #374151;
+            margin-bottom: 16px;
+        }
+
+        .claim-highlight {
+            background: rgba(255, 191, 0, 0.2);
+            border-left: 4px solid #ffbf00;
+            padding: 12px 16px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Argus popup */
+        .argus-popup {
+            position: absolute;
+            right: 120px;
+            top: 120px;
+            width: 420px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
+
+        .popup-header {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .popup-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .popup-subtitle {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .popup-content {
+            padding: 20px;
+        }
+
+        .claim-section {
+            margin-bottom: 20px;
+        }
+
+        .claim-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .claim-text {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 12px;
+            font-style: italic;
+            font-size: 14px;
+            color: #374151;
+        }
+
+        .evidence-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .evidence-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 12px;
+            border-left: 4px solid #10b981;
+        }
+
+        .evidence-card.contradict {
+            border-left-color: #ef4444;
+        }
+
+        .evidence-title {
+            font-weight: 600;
+            font-size: 13px;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .evidence-badge {
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .evidence-badge.support {
+            background: #10b981;
+            color: white;
+        }
+
+        .evidence-badge.contradict {
+            background: #ef4444;
+            color: white;
+        }
+
+        .evidence-snippet {
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 4px;
+        }
+
+        .evidence-meta {
+            font-size: 10px;
+            color: #64748b;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .verify-btn {
+            width: 100%;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* Provenance highlight on article */
+        .provenance-highlight {
+            position: absolute;
+            left: 200px;
+            top: 300px;
+            width: 300px;
+            height: 60px;
+            background: rgba(255, 191, 0, 0.3);
+            border: 2px solid #ffbf00;
+            border-radius: 4px;
+            pointer-events: none;
+        }
+
+        /* Branding overlay */
+        .branding {
+            position: absolute;
+            top: 120px;
+            left: 120px;
+            z-index: 10;
+        }
+
+        .brand-title {
+            font-size: 56px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .brand-subtitle {
+            font-size: 24px;
+            font-weight: 400;
+            color: #334155;
+        }
+
+        .repo-link {
+            position: absolute;
+            bottom: 120px;
+            right: 120px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #0f172a;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Status overlay */
+        .status-overlay {
+            position: absolute;
+            bottom: 120px;
+            left: 120px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <!-- Branding -->
+    <div class="branding">
+        <div class="brand-title">Argus</div>
+        <div class="brand-subtitle">Personal Web Truth Engine</div>
+    </div>
+
+    <!-- Chrome window -->
+    <div class="chrome-window">
+        <div class="chrome-header">
+            <div class="chrome-controls">
+                <div class="chrome-control"></div>
+                <div class="chrome-control"></div>
+                <div class="chrome-control"></div>
+            </div>
+            <div class="chrome-url">https://example.com/article-about-climate-change</div>
+        </div>
+
+        <!-- Article content -->
+        <div class="article-content">
+            <h1 class="article-title">Climate Change Impact on Crop Yields</h1>
+
+            <p class="article-text">Recent studies have shown that climate change is having a significant impact on agricultural productivity worldwide. Rising temperatures and changing precipitation patterns are affecting crop yields in complex ways.</p>
+
+            <div class="claim-highlight">
+                <p class="article-text"><strong>Key finding:</strong> "Climate change could reduce global crop yields by up to 30% by 2050 if current trends continue."</p>
+            </div>
+
+            <p class="article-text">However, some researchers argue that adaptation strategies and technological innovations could mitigate these effects. The debate continues about the exact magnitude of climate change impacts on agriculture.</p>
+
+            <p class="article-text">A recent meta-analysis of 1,200 studies found that while some crops like wheat and rice are negatively affected, others like maize show mixed results depending on the region and adaptation measures implemented.</p>
+        </div>
+
+        <!-- Provenance highlight -->
+        <div class="provenance-highlight"></div>
+    </div>
+
+    <!-- Argus popup -->
+    <div class="argus-popup">
+        <div class="popup-header">
+            <div class="popup-title">Argus</div>
+            <div class="popup-subtitle">Claim Verification Assistant</div>
+        </div>
+
+        <div class="popup-content">
+            <div class="claim-section">
+                <div class="claim-label">Claim Detected</div>
+                <div class="claim-text">"Climate change could reduce global crop yields by up to 30% by 2050"</div>
+            </div>
+
+            <div class="evidence-cards">
+                <div class="evidence-card">
+                    <div class="evidence-title">
+                        IPCC Report 2023
+                        <span class="evidence-badge support">support</span>
+                    </div>
+                    <div class="evidence-snippet">"Without adaptation, yields could decline 10-30%..."</div>
+                    <div class="evidence-meta">
+                        <span>ipcc.ch/report</span>
+                        <span>87% match</span>
+                    </div>
+                </div>
+
+                <div class="evidence-card contradict">
+                    <div class="evidence-title">
+                        Nature Study 2024
+                        <span class="evidence-badge contradict">contradict</span>
+                    </div>
+                    <div class="evidence-snippet">"Adaptation measures could limit losses to 5-10%..."</div>
+                    <div class="evidence-meta">
+                        <span>nature.com/article</span>
+                        <span>92% match</span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="verify-btn">Verify Claim</button>
+        </div>
+    </div>
+
+    <!-- Status overlay -->
+    <div class="status-overlay">
+        Last operation: local • 847ms
+    </div>
+
+    <!-- Repo link -->
+    <div class="repo-link">
+        github.com/username/argus
+    </div>
+</body>
+</html>

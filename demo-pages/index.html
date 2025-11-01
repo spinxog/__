@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Argus Demo Pages</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f8fafc;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #1e293b;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .demo-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: box-shadow 0.2s;
+        }
+        .demo-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .demo-card h3 {
+            color: #2563eb;
+            margin-bottom: 10px;
+        }
+        .demo-card p {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+        .btn:hover {
+            background: #1d4ed8;
+        }
+        .instructions {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .instructions h2 {
+            color: #1e40af;
+            margin-bottom: 15px;
+        }
+        .instructions ol {
+            color: #3730a3;
+            padding-left: 20px;
+        }
+        .instructions li {
+            margin-bottom: 8px;
+        }
+        .highlight {
+            background: #fef3c7;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Argus Demo Pages</h1>
+
+        <div class="instructions">
+            <h2>How to Test Argus</h2>
+            <ol>
+                <li>Install the Argus extension (see README for setup)</li>
+                <li>Click on any demo page below to open it</li>
+                <li><span class="highlight">Select text containing a claim</span> (highlighted in yellow on demo pages)</li>
+                <li>Click the Argus extension icon in your browser toolbar</li>
+                <li>Click "Verify Claim" to see evidence analysis</li>
+                <li>Click evidence cards to highlight source locations</li>
+            </ol>
+        </div>
+
+        <div class="demo-grid">
+            <div class="demo-card">
+                <h3>Climate Change Claims</h3>
+                <p>Analyze claims about climate impact on agriculture, including yield declines and CO2 fertilization effects.</p>
+                <a href="claim1.html" class="btn" target="_blank">Open Demo 1</a>
+            </div>
+
+            <div class="demo-card">
+                <h3>Medical Claims</h3>
+                <p>Verify claims about Vitamin D deficiency, COVID-19 correlations, and immune system health.</p>
+                <a href="claim2.html" class="btn" target="_blank">Open Demo 2</a>
+            </div>
+
+            <div class="demo-card">
+                <h3>Economic Claims</h3>
+                <p>Check claims about remote work savings, productivity impacts, and carbon emission reductions.</p>
+                <a href="claim3.html" class="btn" target="_blank">Open Demo 3</a>
+            </div>
+        </div>
+
+        <div style="text-align: center; color: #64748b; font-size: 14px;">
+            <p>These demo pages work completely offline and showcase Argus's local claim verification capabilities.</p>
+            <p>Each page contains claims with both supporting and contradicting evidence for comprehensive testing.</p>
+        </div>
+    </div>
+
+    <script>
+        // Track demo usage for analytics (optional)
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[target="_blank"]');
+            links.forEach(link => {
+                link.addEventListener('click', function() {
+                    console.log('Demo opened:', this.href);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+{
+  "claim_extraction": {
+    "claim": "Climate change has caused a 20% decline in global crop yields over the past decade",
+    "canonicalized_claim": "Global crop yields have declined by 20% due to climate change in the last 10 years",
+    "entities": ["climate change", "global crop yields"],
+    "numbers": [20],
+    "times": ["past decade", "last 10 years"],
+    "confidence": 0.8,
+    "suggested_queries": [
+      "global crop yield trends 2013-2023",
+      "climate change impact on agriculture IPCC",
+      "FAO crop production statistics"
+    ]
+  },
+  "evidence_rerank": {
+    "passages": [
+      {
+        "id": "ipcc_2023",
+        "classification": "support",
+        "confidence": 0.9,
+        "reason": "IPCC report confirms climate change affects agricultural productivity with regional declines"
+      },
+      {
+        "id": "fao_stats",
+        "classification": "contradict",
+        "confidence": 0.95,
+        "reason": "FAO data shows global yields increased 2-3% per decade despite climate pressures"
+      },
+      {
+        "id": "tech_advances",
+        "classification": "contradict",
+        "confidence": 0.85,
+        "reason": "Technological improvements have offset many climate change impacts on yields"
+      }
+    ]
+  },
+  "skeptical_scorer": {
+    "net_support_score": 35,
+    "bucket": "Likely False",
+    "reasoning_bullets": [
+      "Strong contradictory evidence from FAO showing yield increases despite climate change",
+      "IPCC acknowledges regional impacts but global yields have risen due to technology",
+      "Claim overstates climate impact by ignoring adaptation and technological factors"
+    ],
+    "confidence_in_assessment": 0.9
+  }
+}

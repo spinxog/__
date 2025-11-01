@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climate Change Claims - Demo Page 1</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f8fafc;
+        }
+        .article {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #1e293b;
+            margin-bottom: 20px;
+        }
+        .claim {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        .evidence {
+            background: #f0f9ff;
+            border-left: 4px solid #0ea5e9;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .contradiction {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .meta {
+            color: #64748b;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="article">
+        <h1>The Impact of Climate Change on Global Agriculture</h1>
+
+        <p>Climate change is increasingly recognized as one of the most significant challenges facing humanity in the 21st century. Its effects are already being felt across multiple sectors, with agriculture being particularly vulnerable.</p>
+
+        <div class="claim" id="claim-1">
+            "Climate change has caused a 20% decline in global crop yields over the past decade, according to recent studies from the UN Food and Agriculture Organization."
+        </div>
+
+        <p>This claim has been widely circulated in environmental circles and has influenced policy decisions in several countries. However, the actual situation is more nuanced than this statistic suggests.</p>
+
+        <div class="evidence">
+            <h3>Supporting Evidence</h3>
+            <p>According to a 2023 IPCC report, climate change has indeed affected agricultural productivity in many regions. Extreme weather events, including droughts and floods, have become more frequent and intense.</p>
+            <p>In some areas, particularly in developing countries, crop yields have declined by 10-15% due to changing precipitation patterns and rising temperatures.</p>
+        </div>
+
+        <div class="contradiction">
+            <h3>Contradicting Evidence</h3>
+            <p>However, the FAO's comprehensive analysis shows that global crop yields have actually increased by approximately 2-3% per decade over the past 50 years, despite climate change pressures.</p>
+            <p>Technological advancements in agriculture, including improved crop varieties and farming techniques, have largely offset the negative impacts of climate change in many regions.</p>
+        </div>
+
+        <p>The key challenge lies in regional disparities. While some areas experience yield declines, others benefit from longer growing seasons and CO2 fertilization effects.</p>
+
+        <div class="claim" id="claim-2">
+            "Rising CO2 levels will increase crop photosynthesis by 30%, leading to higher yields in C3 crops like wheat and rice."
+        </div>
+
+        <p>This phenomenon, known as CO2 fertilization, has been observed in controlled experiments and field studies.</p>
+
+        <div class="evidence">
+            <h3>Supporting Evidence</h3>
+            <p>Research from the University of Illinois shows that elevated CO2 levels can increase photosynthesis in C3 plants by 20-50%, depending on other environmental factors.</p>
+            <p>FACE (Free-Air CO2 Enrichment) experiments have demonstrated yield increases of 10-20% in major crops under elevated CO2 conditions.</p>
+        </div>
+
+        <div class="meta">
+            Published: March 15, 2024<br>
+            Author: Dr. Sarah Chen, Agricultural Climatologist<br>
+            Source: Climate Agriculture Journal
+        </div>
+    </div>
+
+    <script>
+        // Demo page script to highlight claims for testing
+        document.addEventListener('DOMContentLoaded', function() {
+            const claims = document.querySelectorAll('.claim');
+
+            claims.forEach((claim, index) => {
+                claim.style.cursor = 'pointer';
+                claim.addEventListener('click', function() {
+                    // Visual feedback for testing
+                    this.style.background = '#fde68a';
+                    setTimeout(() => {
+                        this.style.background = '#fef3c7';
+                    }, 200);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

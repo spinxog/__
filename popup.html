@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Argus - Claim Verification</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div id="app">
+    <header class="header">
+      <div class="header-content">
+        <div class="title-section">
+          <h1 class="title">Argus</h1>
+          <div class="subtitle">Claim Verification Assistant</div>
+        </div>
+        <div id="latency-chip" class="latency-chip"> Ready</div>
+      </div>
+    </header>
+
+    <div id="main-content">
+      <!-- Initial state -->
+      <div id="initial-state" class="state active">
+        <div class="instruction">
+          <p>Select text on any webpage to verify claims</p>
+          <div class="demo-link">
+            <a href="#" id="demo-link">Try demo pages</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loading state -->
+      <div id="loading-state" class="state">
+        <div class="loading">
+          <div class="snake-game">
+            <canvas id="snake-canvas" width="200" height="200"></canvas>
+          </div>
+          <p id="loading-text">Extracting claim...</p>
+        </div>
+      </div>
+
+      <!-- Claim display -->
+      <div id="claim-state" class="state">
+        <div class="claim-section">
+          <h3>Claim Detected</h3>
+          <div id="claim-text" class="claim-text"></div>
+          <div id="claim-meta" class="claim-meta"></div>
+        </div>
+
+        <div class="actions">
+          <button id="verify-btn" class="btn primary">Verify Claim</button>
+          <button id="settings-btn" class="btn secondary">Settings</button>
+        </div>
+      </div>
+
+      <!-- Verification results -->
+      <div id="results-state" class="state">
+        <div class="results-header">
+          <h3>Verification Results</h3>
+          <div id="confidence-score" class="score"></div>
+        </div>
+
+        <div id="explanation" class="explanation"></div>
+
+        <div class="evidence-section">
+          <h4>Supporting Evidence</h4>
+          <div id="supporting-evidence" class="evidence-list"></div>
+        </div>
+
+        <div class="evidence-section">
+          <h4>Contradicting Evidence</h4>
+          <div id="contradicting-evidence" class="evidence-list"></div>
+        </div>
+
+        <div class="export-actions">
+          <button id="export-pdf-btn" class="btn primary">Export PDF</button>
+          <button id="export-md-btn" class="btn secondary">Export Markdown</button>
+          <button id="generate-rebuttal-btn" class="btn secondary">Generate Rebuttal</button>
+        </div>
+      </div>
+
+      <!-- Rebuttal display -->
+      <div id="rebuttal-state" class="state">
+        <div class="rebuttal-section">
+          <h3>Generated Rebuttal</h3>
+          <div id="rebuttal-content" class="rebuttal-content"></div>
+          <div class="rebuttal-actions">
+            <button id="copy-rebuttal-btn" class="btn primary">Copy to Clipboard</button>
+            <button id="back-to-results-btn" class="btn secondary">Back to Results</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings -->
+      <div id="settings-state" class="state">
+        <div class="settings-section">
+          <h3>Settings</h3>
+
+          <div class="setting-item">
+            <label class="setting-label">
+              <input type="checkbox" id="local-only-toggle">
+              Local-only mode (no cloud fallback)
+            </label>
+          </div>
+
+          <div class="setting-item">
+            <label class="setting-label">
+              <input type="checkbox" id="encrypt-storage-toggle">
+              Encrypt local evidence store
+            </label>
+          </div>
+
+          <div class="setting-item">
+            <label class="setting-label">
+              <input type="checkbox" id="auto-index-toggle">
+              Auto-index visited pages
+            </label>
+          </div>
+
+          <div class="setting-actions">
+            <button id="save-settings-btn" class="btn primary">Save Settings</button>
+            <button id="back-btn" class="btn secondary">Back</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Status bar -->
+    <div id="status-bar" class="status-bar">
+      <span id="status-text">Ready</span>
+      <span id="latency-display" class="latency"></span>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

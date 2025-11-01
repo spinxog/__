@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "Argus - Claim Verification Assistant",
+  "version": "1.0.0",
+  "description": "On-device claim extraction and verification with local evidence store and provenance visualization.",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting",
+    "tabs",
+    "contextMenus"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content_script.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Argus - Verify Claims"
+  },
+  "options_page": "options.html",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["scripts/*"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

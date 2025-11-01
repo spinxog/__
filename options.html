@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Argus Options</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f8fafc;
+      color: #1e293b;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #2563eb;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .section {
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .section:last-child {
+      border-bottom: none;
+    }
+
+    h2 {
+      color: #1e293b;
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+
+    .setting-group {
+      margin-bottom: 20px;
+    }
+
+    .setting-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 15px;
+      padding: 15px;
+      background: #f8fafc;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .setting-content {
+      flex: 1;
+    }
+
+    .setting-title {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .setting-description {
+      font-size: 14px;
+      color: #64748b;
+      line-height: 1.4;
+    }
+
+    .toggle {
+      position: relative;
+      width: 50px;
+      height: 24px;
+      margin-left: 15px;
+    }
+
+    .toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 24px;
+    }
+
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .toggle-slider {
+      background-color: #2563eb;
+    }
+
+    input:checked + .toggle-slider:before {
+      transform: translateX(26px);
+    }
+
+    .actions {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .btn {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn:hover {
+      background: #1d4ed8;
+    }
+
+    .status {
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 6px;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .status.success {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    .status.error {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .info-box {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .info-box h3 {
+      color: #1e40af;
+      margin-bottom: 10px;
+    }
+
+    .info-box p {
+      color: #3730a3;
+      margin: 0;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Argus Settings</h1>
+
+    <div class="info-box">
+      <h3>Privacy First</h3>
+      <p>Argus operates entirely locally by default. No data leaves your device unless you explicitly enable cloud fallback for deeper web searches.</p>
+    </div>
+
+    <div class="section">
+      <h2>Privacy & Security</h2>
+
+      <div class="setting-group">
+        <div class="setting-item">
+          <div class="setting-content">
+            <div class="setting-title">Local-Only Mode</div>
+            <div class="setting-description">Process all claims locally without any cloud services. This ensures maximum privacy but may limit evidence discovery.</div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="local-only">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-content">
+            <div class="setting-title">Encrypt Evidence Store</div>
+            <div class="setting-description">Password-protect your local evidence database. You'll need to enter a passphrase to access stored evidence.</div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="encrypt-storage">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Indexing & Performance</h2>
+
+      <div class="setting-group">
+        <div class="setting-item">
+          <div class="setting-content">
+            <div class="setting-title">Auto-Index Pages</div>
+            <div class="setting-description">Automatically index visited pages for evidence when claims are verified. Improves future verification speed.</div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="auto-index" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Cloud Fallback (Optional)</h2>
+
+      <div class="setting-group">
+        <div class="setting-item">
+          <div class="setting-content">
+            <div class="setting-title">Enable Cloud Search</div>
+            <div class="setting-description">Allow Argus to search the broader web for additional evidence when local results are insufficient. Requires explicit opt-in for each search.</div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="cloud-fallback">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <p style="font-size: 14px; color: #64748b; margin-top: 10px;">
+        <strong>Note:</strong> Cloud fallback sends only canonicalized claims (no browsing history) and requires your explicit permission for each use.
+      </p>
+    </div>
+
+    <div class="actions">
+      <button class="btn" id="save-btn">Save Settings</button>
+    </div>
+
+    <div id="status" class="status" style="display: none;"></div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

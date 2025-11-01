@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Claims - Demo Page 2</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f8fafc;
+        }
+        .article {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #1e293b;
+            margin-bottom: 20px;
+        }
+        .claim {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        .evidence {
+            background: #f0f9ff;
+            border-left: 4px solid #0ea5e9;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .contradiction {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .meta {
+            color: #64748b;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        .chart {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="article">
+        <h1>Vitamin D and Immune System Health</h1>
+
+        <p>The role of Vitamin D in maintaining immune system health has been a topic of significant research and public interest, especially in the context of the COVID-19 pandemic.</p>
+
+        <div class="claim" id="claim-1">
+            "Vitamin D deficiency increases the risk of respiratory infections by 3-4 times, according to multiple clinical studies."
+        </div>
+
+        <p>This claim has been widely shared on social media and has led many people to start taking Vitamin D supplements. But what does the scientific evidence actually show?</p>
+
+        <div class="evidence">
+            <h3>Supporting Evidence</h3>
+            <p>A meta-analysis published in the British Medical Journal (2020) found that Vitamin D supplementation reduced the risk of acute respiratory infections by 12% in the general population.</p>
+            <p>Several observational studies have shown associations between low Vitamin D levels and increased susceptibility to infections, particularly in elderly populations.</p>
+        </div>
+
+        <div class="contradiction">
+            <h3>Contradicting Evidence</h3>
+            <p>However, a large-scale randomized controlled trial (VITAL study, 2022) involving over 25,000 participants found no significant reduction in infection rates with Vitamin D supplementation.</p>
+            <p>The Cochrane Review (2021) concluded that the evidence for Vitamin D preventing respiratory infections is inconclusive, with many studies showing no effect.</p>
+        </div>
+
+        <div class="chart">
+            Vitamin D Supplementation Study Results<br>
+            ┌─────────────────────────────────────┐<br>
+            │ Study Type          │ Risk Reduction │<br>
+            ├─────────────────────────────────────┤<br>
+            │ Meta-analysis (2020)│      12%       │<br>
+            │ RCT VITAL (2022)    │       0%       │<br>
+            │ Cochrane (2021)     │   Inconclusive │<br>
+            └─────────────────────────────────────┘
+        </div>
+
+        <div class="claim" id="claim-2">
+            "90% of COVID-19 patients admitted to hospitals were Vitamin D deficient, proving that low Vitamin D causes severe COVID-19."
+        </div>
+
+        <p>This statistic has been frequently cited as evidence for the importance of Vitamin D in fighting COVID-19. However, correlation does not equal causation.</p>
+
+        <div class="evidence">
+            <h3>Supporting Evidence</h3>
+            <p>Several hospital-based studies during the pandemic did find high rates of Vitamin D deficiency among COVID-19 patients, particularly those requiring intensive care.</p>
+            <p>Some smaller studies showed that Vitamin D supplementation might reduce disease severity in deficient patients.</p>
+        </div>
+
+        <div class="contradiction">
+            <h3>Contradicting Evidence</h3>
+            <p>Large population studies have shown that Vitamin D deficiency is extremely common worldwide (up to 50% of populations in some regions), making it likely to appear in any hospitalized group.</p>
+            <p>Randomized trials of Vitamin D supplementation for COVID-19 prevention or treatment have shown mixed or negative results, with no clear benefit demonstrated.</p>
+            <p>Confounding factors like age, obesity, and comorbidities are much stronger predictors of COVID-19 severity than Vitamin D status.</p>
+        </div>
+
+        <p>The relationship between Vitamin D and immune health is complex. While deficiency should be corrected for overall health, the evidence does not support Vitamin D as a magic bullet for preventing infections or treating COVID-19.</p>
+
+        <div class="meta">
+            Published: February 28, 2024<br>
+            Author: Dr. Michael Rodriguez, Immunologist<br>
+            Source: Medical Evidence Review
+        </div>
+    </div>
+
+    <script>
+        // Demo page script
+        document.addEventListener('DOMContentLoaded', function() {
+            const claims = document.querySelectorAll('.claim');
+
+            claims.forEach((claim, index) => {
+                claim.style.cursor = 'pointer';
+                claim.addEventListener('click', function() {
+                    this.style.background = '#fde68a';
+                    setTimeout(() => {
+                        this.style.background = '#fef3c7';
+                    }, 200);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

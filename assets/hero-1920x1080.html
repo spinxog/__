@@ -1,0 +1,514 @@
+8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Argus Hero Screenshot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            font-family: 'Inter', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Chrome window mock */
+        .chrome-window {
+            position: absolute;
+            top: 80px;
+            left: 80px;
+            width: 1760px;
+            height: 920px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        .chrome-header {
+            height: 40px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+        }
+
+        .chrome-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .chrome-control {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ff5f57;
+        }
+
+        .chrome-control:nth-child(2) {
+            background: #ffbd2e;
+        }
+
+        .chrome-control:nth-child(3) {
+            background: #28ca42;
+        }
+
+        .chrome-url {
+            margin-left: 16px;
+            flex: 1;
+            background: white;
+            border-radius: 20px;
+            padding: 6px 12px;
+            font-size: 13px;
+            color: #666;
+            border: 1px solid #ddd;
+        }
+
+        /* Article content */
+        .article-content {
+            position: absolute;
+            left: 0;
+            top: 40px;
+            width: 65%;
+            height: calc(100% - 40px);
+            padding: 40px;
+            overflow: hidden;
+        }
+
+        .article-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 24px;
+            line-height: 1.3;
+        }
+
+        .article-text {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #374151;
+            margin-bottom: 20px;
+        }
+
+        .article-text:first-letter {
+            font-size: 16px;
+            float: none;
+            margin-right: 0;
+            margin-top: 0;
+            line-height: 1.7;
+            color: #374151;
+        }
+
+        .claim-highlight {
+            background: rgba(255, 191, 0, 0.15);
+            border-left: 4px solid #ffbf00;
+            padding: 16px 20px;
+            margin: 24px 0;
+            border-radius: 0 8px 8px 0;
+            position: relative;
+        }
+
+        /* Argus popup - wider and more prominent */
+        .argus-popup {
+            position: absolute;
+            right: 80px;
+            top: 140px;
+            width: 480px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .popup-header {
+            background: linear-gradient(135deg, #0B5FFF, #2563eb);
+            color: white;
+            padding: 24px;
+            text-align: center;
+            position: relative;
+        }
+
+        .popup-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .popup-subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        .latency-chip {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .popup-content {
+            padding: 24px;
+        }
+
+        .claim-section {
+            margin-bottom: 24px;
+        }
+
+        .claim-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .claim-text {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 16px;
+            font-style: italic;
+            font-size: 15px;
+            color: #374151;
+            line-height: 1.5;
+        }
+
+        .confidence-pill {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .evidence-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .evidence-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 16px;
+            border-left: 4px solid #10b981;
+            transition: all 0.2s ease;
+        }
+
+        .evidence-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .evidence-card.contradict {
+            border-left-color: #ef4444;
+        }
+
+        .evidence-title {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .evidence-badge {
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .evidence-badge.support {
+            background: #10b981;
+            color: white;
+        }
+
+        .evidence-badge.contradict {
+            background: #ef4444;
+            color: white;
+        }
+
+        .evidence-snippet {
+            font-size: 13px;
+            color: #64748b;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .evidence-meta {
+            font-size: 11px;
+            color: #64748b;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .evidence-link {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .evidence-link:hover {
+            text-decoration: underline;
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px 16px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn.primary {
+            background: #0B5FFF;
+            color: white;
+        }
+
+        .btn.primary:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+        }
+
+        .btn.secondary {
+            background: #f1f5f9;
+            color: #334155;
+            border: 1px solid #e2e8f0;
+        }
+
+        .btn.secondary:hover {
+            background: #e2e8f0;
+        }
+
+        /* Provenance highlight on article */
+        .provenance-highlight {
+            position: absolute;
+            left: 280px;
+            top: 380px;
+            width: 320px;
+            height: 80px;
+            background: rgba(255, 191, 0, 0.25);
+            border: 2px solid #ffbf00;
+            border-radius: 12px;
+            pointer-events: none;
+            box-shadow: 0 0 0 2px rgba(255, 191, 0, 0.1);
+        }
+
+        .provenance-arrow {
+            position: absolute;
+            right: -20px;
+            top: 30px;
+            width: 0;
+            height: 0;
+            border-left: 20px solid #ffbf00;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+        }
+
+        /* Branding overlay - moved to avoid overlap */
+        .branding {
+            position: absolute;
+            top: 200px;
+            left: 80px;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            padding: 20px 24px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .brand-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 6px;
+            line-height: 1.1;
+        }
+
+        .brand-subtitle {
+            font-size: 18px;
+            font-weight: 500;
+            color: #334155;
+            opacity: 0.9;
+        }
+
+        .repo-link {
+            position: absolute;
+            bottom: 80px;
+            right: 80px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            padding: 12px 20px;
+            border-radius: 24px;
+            font-size: 14px;
+            color: #0f172a;
+            font-weight: 500;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Status overlay */
+        .status-overlay {
+            position: absolute;
+            bottom: 80px;
+            left: 80px;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            color: white;
+            padding: 10px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body>
+<!--- the card was still overlaping there was just a box to cover it --->
+
+    <!-- Chrome window -->
+    <div class="chrome-window">
+        <div class="chrome-header">
+            <div class="chrome-controls">
+                <div class="chrome-control"></div>
+                <div class="chrome-control"></div>
+                <div class="chrome-control"></div>
+            </div>
+            <div class="chrome-url">https://www.nytimes.com/2024/01/15/climate/climate-change-crop-yields.html</div>
+        </div>
+
+        <!-- Article content - more realistic and detailed -->
+        <div class="article-content">
+            <h1 class="article-title">Climate Change Could Reduce Global Crop Yields by 30% by 2050, Scientists Warn</h1>
+
+            <p class="article-text">Climate change is already having profound effects on agriculture worldwide, with rising temperatures, altered precipitation patterns, and increased frequency of extreme weather events threatening food security for billions of people.</p>
+
+            <p class="article-text">A comprehensive new study published in the journal Nature Climate Change has found that without significant adaptation measures, global crop yields could decline by 10 to 30 percent by mid-century. The research, which analyzed data from more than 1,200 studies across 90 countries, provides the most detailed picture yet of climate change's impact on agriculture.</p>
+
+            <div class="claim-highlight">
+                <p class="article-text"><strong>Key finding:</strong> "Our analysis shows that climate change could reduce global crop yields by up to 30% by 2050 if current trends continue without adaptation. However, with proper interventions, these losses could be limited to 5-10%."</p>
+            </div>
+
+            <p class="article-text">The study found that wheat and rice yields are particularly vulnerable, with potential declines of 20-30% in major producing regions. Maize shows more mixed results, with some areas experiencing yield increases due to longer growing seasons, while others face severe drought-related losses.</p>
+
+            <p class="article-text">Researchers emphasize that adaptation strategies such as improved irrigation, heat-resistant crop varieties, and better farming practices could significantly mitigate these impacts. "The difference between 30% losses and 10% losses depends entirely on whether we invest in adaptation now," said lead author Dr. Maria Rodriguez.</p>
+
+            <p class="article-text">The findings underscore the urgent need for climate action and agricultural innovation. As global temperatures continue to rise, the window for effective adaptation is rapidly closing.</p>
+
+            <p class="article-text">Critics of the study argue that technological advances and carbon capture could offset some of these effects, but most experts agree that significant changes to agricultural systems will be necessary to feed a growing global population in a warming world.</p>
+        </div>
+
+        <!-- Provenance highlight with arrow -->
+        <div class="provenance-highlight">
+            <div class="provenance-arrow"></div>
+        </div>
+    </div>
+
+    <!-- Argus popup - redesigned to be wider and more polished -->
+    <div class="argus-popup">
+        <div class="popup-header">
+            <div class="popup-title">Argus</div>
+            <div class="popup-subtitle">Claim Verification Assistant</div>
+            <div class="latency-chip">Local • 847ms</div>
+        </div>
+
+        <div class="popup-content">
+            <div class="claim-section">
+                <div class="claim-label">
+                    Claim Detected
+                    <span class="confidence-pill">Suspicious</span>
+                </div>
+                <div class="claim-text">"Climate change could reduce global crop yields by up to 30% by 2050"</div>
+            </div>
+
+            <div class="evidence-cards">
+                <div class="evidence-card">
+                    <div class="evidence-title">
+                        Nature Climate Change Study
+                        <span class="evidence-badge support">support</span>
+                    </div>
+                    <div class="evidence-snippet">"Our analysis shows that climate change could reduce global crop yields by up to 30% by 2050 if current trends continue..."</div>
+                    <div class="evidence-meta">
+                        <a href="#" class="evidence-link">nature.com/climate-change</a>
+                        <span>94% match</span>
+                    </div>
+                </div>
+
+                <div class="evidence-card contradict">
+                    <div class="evidence-title">
+                        IPCC Adaptation Report
+                        <span class="evidence-badge contradict">contradict</span>
+                    </div>
+                    <div class="evidence-snippet">"With adaptation measures, yield losses could be limited to 5-10% through improved irrigation and heat-resistant varieties..."</div>
+                    <div class="evidence-meta">
+                        <a href="#" class="evidence-link">ipcc.ch/adaptation</a>
+                        <span>89% match</span>
+                    </div>
+                </div>
+
+                <div class="evidence-card">
+                    <div class="evidence-title">
+                        FAO Global Assessment
+                        <span class="evidence-badge support">support</span>
+                    </div>
+                    <div class="evidence-snippet">"Climate impacts on agriculture will be severe without intervention, with wheat and rice particularly affected..."</div>
+                    <div class="evidence-meta">
+                        <a href="#" class="evidence-link">fao.org/climate-assessment</a>
+                        <span>76% match</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button class="btn primary">Deep Check</button>
+                <button class="btn secondary">Export PDF</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status overlay -->
+    <div class="status-overlay">
+        Last operation: local • Ready
+    </div>
+
+    <!-- Repo link -->
+    <div class="repo-link">
+        github.com/username/argus
+    </div>
+</body>
+</html>

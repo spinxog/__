@@ -1,0 +1,47 @@
+{
+  "claim_extraction": {
+    "claim": "Vitamin D deficiency increases the risk of respiratory infections by 3-4 times",
+    "canonicalized_claim": "Vitamin D deficiency triples or quadruples the risk of respiratory infections",
+    "entities": ["Vitamin D deficiency", "respiratory infections"],
+    "numbers": [3, 4],
+    "times": [],
+    "confidence": 0.75,
+    "suggested_queries": [
+      "vitamin D respiratory infection meta analysis",
+      "VITAL trial vitamin D results",
+      "Cochrane vitamin D review"
+    ]
+  },
+  "evidence_rerank": {
+    "passages": [
+      {
+        "id": "bmj_meta_2020",
+        "classification": "support",
+        "confidence": 0.8,
+        "reason": "Meta-analysis shows Vitamin D reduces acute respiratory infection risk by 12%"
+      },
+      {
+        "id": "vital_trial_2022",
+        "classification": "contradict",
+        "confidence": 0.9,
+        "reason": "Large RCT found no significant reduction in infection rates with supplementation"
+      },
+      {
+        "id": "cochrane_2021",
+        "classification": "neutral",
+        "confidence": 0.7,
+        "reason": "Cochrane review concludes evidence is inconclusive for respiratory infection prevention"
+      }
+    ]
+  },
+  "skeptical_scorer": {
+    "net_support_score": 45,
+    "bucket": "Suspicious",
+    "reasoning_bullets": [
+      "Observational studies show associations but RCTs show mixed results",
+      "Large VITAL trial found no benefit despite widespread deficiency",
+      "Evidence suggests deficiency should be corrected but not as infection prevention"
+    ],
+    "confidence_in_assessment": 0.8
+  }
+}

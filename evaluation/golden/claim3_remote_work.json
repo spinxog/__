@@ -1,0 +1,47 @@
+{
+  "claim_extraction": {
+    "claim": "Remote work saves companies $11,000 per employee annually in real estate costs",
+    "canonicalized_claim": "Remote work reduces company costs by $11,000 per employee each year through saved office space",
+    "entities": ["remote work", "companies", "real estate costs"],
+    "numbers": [11000],
+    "times": ["annually", "per year"],
+    "confidence": 0.7,
+    "suggested_queries": [
+      "remote work cost savings Stanford",
+      "company real estate savings remote work",
+      "Global Workplace Analytics remote work costs"
+    ]
+  },
+  "evidence_rerank": {
+    "passages": [
+      {
+        "id": "stanford_2022",
+        "classification": "support",
+        "confidence": 0.8,
+        "reason": "Stanford study estimates $10,000-$20,000 annual savings per remote employee"
+      },
+      {
+        "id": "twitter_savings",
+        "classification": "contradict",
+        "confidence": 0.9,
+        "reason": "Twitter reported only $100M savings vs $500M theoretical, showing gap between estimates and reality"
+      },
+      {
+        "id": "gwa_analytics",
+        "classification": "support",
+        "confidence": 0.75,
+        "reason": "Global Workplace Analytics suggests 30-50% overhead reduction from eliminating offices"
+      }
+    ]
+  },
+  "skeptical_scorer": {
+    "net_support_score": 40,
+    "bucket": "Suspicious",
+    "reasoning_bullets": [
+      "Theoretical savings estimates far exceed actual company reports",
+      "Many companies still need office space for collaboration and culture",
+      "Stanford study based on pre-pandemic data, not actual implementation"
+    ],
+    "confidence_in_assessment": 0.85
+  }
+}

@@ -1,0 +1,86 @@
+[
+  {
+    "id": "climate_yield_decline",
+    "claim": "Climate change has caused a 20% decline in global crop yields over the past decade",
+    "canonical_claim": "Global crop yields have declined by 20% due to climate change in the last 10 years",
+    "ground_truth": "contradict",
+    "entities": ["climate change", "crop yields", "global agriculture"],
+    "numbers": [20],
+    "times": ["past decade", "last 10 years"],
+    "expected_supporting_sources": 1,
+    "expected_contradicting_sources": 2,
+    "confidence_threshold": 0.7
+  },
+  {
+    "id": "vitamin_d_infection_risk",
+    "claim": "Vitamin D deficiency increases respiratory infection risk by 3-4 times",
+    "canonical_claim": "Vitamin D deficiency triples or quadruples the risk of respiratory infections",
+    "ground_truth": "mixed",
+    "entities": ["Vitamin D", "respiratory infections", "immune system"],
+    "numbers": [3, 4],
+    "times": [],
+    "expected_supporting_sources": 2,
+    "expected_contradicting_sources": 2,
+    "confidence_threshold": 0.6
+  },
+  {
+    "id": "remote_work_savings",
+    "claim": "Remote work saves companies $11,000 per employee annually in real estate costs",
+    "canonical_claim": "Remote work reduces company costs by $11,000 per employee each year through saved office space",
+    "ground_truth": "contradict",
+    "entities": ["remote work", "companies", "real estate costs"],
+    "numbers": [11000],
+    "times": ["annually", "per year"],
+    "expected_supporting_sources": 1,
+    "expected_contradicting_sources": 2,
+    "confidence_threshold": 0.8
+  },
+  {
+    "id": "co2_fertilization",
+    "claim": "Rising CO2 levels increase crop yields by 30% through photosynthesis enhancement",
+    "canonical_claim": "Elevated CO2 levels boost crop photosynthesis and yields by 30%",
+    "ground_truth": "support",
+    "entities": ["CO2 levels", "crop yields", "photosynthesis"],
+    "numbers": [30],
+    "times": [],
+    "expected_supporting_sources": 2,
+    "expected_contradicting_sources": 0,
+    "confidence_threshold": 0.9
+  },
+  {
+    "id": "remote_productivity",
+    "claim": "Remote work increases productivity by 20-30% due to reduced commuting and interruptions",
+    "canonical_claim": "Remote work boosts productivity by 20-30% through less commuting time and fewer distractions",
+    "ground_truth": "mixed",
+    "entities": ["remote work", "productivity", "commuting"],
+    "numbers": [20, 30],
+    "times": [],
+    "expected_supporting_sources": 2,
+    "expected_contradicting_sources": 2,
+    "confidence_threshold": 0.5
+  },
+  {
+    "id": "covid_vitamin_d",
+    "claim": "90% of hospitalized COVID-19 patients were Vitamin D deficient",
+    "canonical_claim": "90% of COVID-19 patients requiring hospitalization had Vitamin D deficiency",
+    "ground_truth": "support",
+    "entities": ["COVID-19", "hospitalized patients", "Vitamin D deficiency"],
+    "numbers": [90],
+    "times": [],
+    "expected_supporting_sources": 1,
+    "expected_contradicting_sources": 1,
+    "confidence_threshold": 0.7
+  },
+  {
+    "id": "remote_emissions",
+    "claim": "Remote work has reduced US carbon emissions by 50 million tons annually",
+    "canonical_claim": "Remote work decreased US carbon emissions by 50 million tons each year",
+    "ground_truth": "contradict",
+    "entities": ["remote work", "US carbon emissions"],
+    "numbers": [50],
+    "times": ["annually", "each year"],
+    "expected_supporting_sources": 1,
+    "expected_contradicting_sources": 2,
+    "confidence_threshold": 0.8
+  }
+]

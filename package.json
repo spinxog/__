@@ -1,0 +1,34 @@
+{
+  "name": "argus-chrome-extension",
+  "version": "1.0.0",
+  "description": "A Chrome extension that provides on-device claim extraction and verification using multimodal analysis and local evidence retrieval. Argus helps users verify claims by analyzing selected text, extracting canonical claims, and finding supporting/contradicting evidence from indexed web content.",
+  "main": "background.js",
+  "scripts": {
+    "screenshot": "node scripts/screenshot.js",
+    "render-pdf": "node scripts/render_pdf.js",
+    "generate-assets": "npm run screenshot assets/hero-1920x1080.html assets/hero-1920x1080.png && npm run screenshot assets/slide-template-16x9.html assets/slide-template-16x9.png && npm run render-pdf assets/sample_evidence_card.html assets/sample_evidence_card.pdf",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/username/argus.git"
+  },
+  "keywords": [
+    "chrome-extension",
+    "fact-checking",
+    "ai",
+    "claim-verification",
+    "web-truth",
+    "evidence-retrieval"
+  ],
+  "author": "Argus Team",
+  "license": "MIT",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/username/argus/issues"
+  },
+  "homepage": "https://github.com/username/argus#readme",
+  "devDependencies": {
+    "puppeteer": "^24.27.0"
+  }
+}

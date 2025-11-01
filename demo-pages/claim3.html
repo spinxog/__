@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Economic Claims - Demo Page 3</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f8fafc;
+        }
+        .article {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #1e293b;
+            margin-bottom: 20px;
+        }
+        .claim {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        .evidence {
+            background: #f0f9ff;
+            border-left: 4px solid #0ea5e9;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .contradiction {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .meta {
+            color: #64748b;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        .statistic {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="article">
+        <h1>The Economic Impact of Remote Work</h1>
+
+        <p>The COVID-19 pandemic accelerated the adoption of remote work arrangements, fundamentally changing how we think about office spaces and work-life balance. But what has been the actual economic impact?</p>
+
+        <div class="claim" id="claim-1">
+            "Remote work has saved companies an average of $11,000 per employee per year in real estate costs, according to Stanford University research."
+        </div>
+
+        <p>This figure has been widely cited by companies justifying permanent remote work policies. But is this number accurate and does it tell the full story?</p>
+
+        <div class="evidence">
+            <h3>Supporting Evidence</h3>
+            <p>A 2022 study by Stanford's Institute for Economic Policy Research estimated that remote work could save employers between $10,000-$20,000 per employee annually in office space costs.</p>
+            <p>Global Workplace Analytics has reported similar figures, suggesting that eliminating office space could reduce overhead costs by 30-50% for many organizations.</p>
+        </div>
+
+        <div class="contradiction">
+            <h3>Contradicting Evidence</h3>
+            <p>However, the Stanford study was based on pre-pandemic data and theoretical models, not actual remote work implementations during COVID-19.</p>
+            <p>Actual company reports show much lower savings. For example, Twitter reported only $100 million in annual savings from remote work, far below the $500 million theoretical maximum.</p>
+            <p>Many companies have found that they still need some office space for collaboration, training, and company culture, reducing potential savings significantly.</p>
+        </div>
+
+        <div class="statistic">
+            <strong>Real-World Savings Examples:</strong><br>
+            • IBM: $100 million annual savings (vs. $1.2 billion theoretical)<br>
+            • Yahoo: Minimal savings due to hybrid model requirements<br>
+            • GitLab: $150 million savings but with productivity trade-offs
+        </div>
+
+        <div class="claim" id="claim-2">
+            "Remote work increases productivity by 20-30% because employees waste less time commuting and have fewer interruptions."
+        </div>
+
+        <p>This claim has been a major driver of the remote work movement, with companies citing improved work-life balance and reduced overhead.</p>
+
+        <div class="evidence">
+            <h3>Supporting Evidence</h3>
+            <p>Microsoft's 2021 Work Trend Index found that 53% of employees reported higher productivity when working remotely.</p>
+            <p>A Stanford study showed that remote workers completed 13% more calls per day than office workers, suggesting increased output.</p>
+            <p>Employees report saving 2-4 hours per week that would otherwise be spent commuting.</p>
+        </div>
+
+        <div class="contradiction">
+            <h3>Contradicting Evidence</h3>
+            <p>Boston University's analysis of 61 studies found that remote work had no significant impact on productivity, either positive or negative.</p>
+            <p>Many companies report that while some employees thrive remotely, others struggle with isolation, leading to decreased productivity and higher turnover.</p>
+            <p>The Microsoft study also found that 43% of employees felt less productive when working remotely, citing distractions at home and poor work setups.</p>
+        </div>
+
+        <p>The productivity impact of remote work appears to be highly individual and context-dependent. While some workers and roles benefit greatly, others require the structure and collaboration that office environments provide.</p>
+
+        <div class="claim" id="claim-3">
+            "Remote work has reduced carbon emissions by 50 million tons annually in the US alone, equivalent to taking 10 million cars off the road."
+        </div>
+
+        <p>This environmental benefit has been cited as a major advantage of remote work policies.</p>
+
+        <div class="evidence">
+            <h3>Supporting Evidence</h3>
+            <p>Global Workplace Analytics estimates that remote work could reduce US carbon emissions by 54 million tons annually.</p>
+            <p>Studies show that transportation accounts for 29% of US greenhouse gas emissions, and remote work directly reduces commuting.</p>
+        </div>
+
+        <div class="contradiction">
+            <h3>Contradicting Evidence</h3>
+            <p>However, these estimates assume 100% remote work adoption, which hasn't occurred. Actual remote work rates are typically 20-40% of the workforce.</p>
+            <p>Increased home energy use (heating, cooling, lighting) and delivery services may offset some commuting reductions.</p>
+            <p>The actual measured reduction in emissions has been much lower than theoretical estimates, with some studies showing minimal net environmental benefit.</p>
+        </div>
+
+        <div class="meta">
+            Published: January 20, 2024<br>
+            Author: Dr. Emily Watson, Economic Analyst<br>
+            Source: Workplace Economics Quarterly
+        </div>
+    </div>
+
+    <script>
+        // Demo page script
+        document.addEventListener('DOMContentLoaded', function() {
+            const claims = document.querySelectorAll('.claim');
+
+            claims.forEach((claim, index) => {
+                claim.style.cursor = 'pointer';
+                claim.addEventListener('click', function() {
+                    this.style.background = '#fde68a';
+                    setTimeout(() => {
+                        this.style.background = '#fef3c7';
+                    }, 200);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
