@@ -55,7 +55,5 @@ See `/evaluation/metrics.csv` for extraction success, retrieval precision, and l
 
 ---
 
-## License & contact
+## License
 MIT License — see `LICENSE`.  
-Repo / Demo: `https://github.com/<you>/argus`  
-For questions: open an Issue on the repo.
